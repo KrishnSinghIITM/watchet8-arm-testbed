@@ -1,0 +1,27 @@
+name: Arm64 SSH Testbed (Raspberry Pi 5 Equivalent)
+
+on:
+  workflow_dispatch: # Allows manual one-click trigger from GitHub web UI
+
+jobs:
+  arm64-session:
+    # Official GitHub-hosted 64-bit Arm runner (Armv8.2-A / Armv8.4-A with NEON SIMD)
+    # Specs: 4 vCPUs, 16 GB RAM, 64-bit Linux (aarch64)
+    runs-on: ubuntu-24.04-arm
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Print Arm Architecture Diagnostics
+        run: |
+          echo "=== CPU Architecture ==="
+          uname -m
+          echo "=== Core Specs & SIMD Flags ==="
+          lscpu | grep -E "Architecture|Model name|Flags|CPU\(s\):|Byte Order"
+          echo "=== Memory Diagnostics ==="
+          free -h
+
+      - name: Launch Interactive SSH Terminal via tmate
+        uses: mxschmitt/action-tmate@v3
+
