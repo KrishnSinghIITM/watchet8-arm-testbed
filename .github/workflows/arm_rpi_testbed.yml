@@ -19,16 +19,7 @@ jobs:
           echo "=== Memory Diagnostics ==="
           free -h
 
-      - name: Setup Tmate Directly
-        run: |
-          sudo apt-get update && sudo apt-get install -y tmate openssh-client
-          tmate -S /tmp/tmate.sock new-session -d
-          tmate -S /tmp/tmate.sock wait tmate-ready
-          echo "=========================================================="
-          echo "=== YOUR SSH CONNECTION COMMAND (RUN IN POWERSHELL):   ==="
-          tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
-          echo "=== OR OPEN THIS WEB TERMINAL URL IN YOUR BROWSER:     ==="
-          tmate -S /tmp/tmate.sock display -p '#{tmate_web}'
-          echo "=========================================================="
-          # Keep session alive for interactive use
-          while [ ! -f /tmp/stop ]; do sleep 2; done
+      - name: Launch Interactive SSH Terminal via tmate
+        uses: mxschmitt/action-tmate@v3
+        with:
+          connect-timeout-seconds: 1800 # Waits 30 minutes for you to connect
