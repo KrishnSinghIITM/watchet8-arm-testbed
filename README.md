@@ -1,4 +1,4 @@
-# WatchET8: Real-Time Edge Object Detection and Crowd Counting via Quantized ExecuTorch on Arm Cortex-A
+# WatchET8: Watching Every Clock
 
 **Track**: Problem Statement 2: AI for Safer Communities: Edge-Based Object Detection and Counting  
 **Target Hardware**: Raspberry Pi 4 & 5 (64-bit Quad-Core Arm Cortex-A72 / A76, Armv8/v8.2-A NEON SIMD)  
